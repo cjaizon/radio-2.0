@@ -1,6 +1,5 @@
 // a simple fetch helper
-const url = 'https://nl1.api.radio-browser.info/json/stations/search?limit=10000&hidebroken=true&order=votes&reverse=true'
-
+const url = import.meta.env.VITE_API_URL
 
 export const fetchRadios = async () => {
 
