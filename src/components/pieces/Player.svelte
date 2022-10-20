@@ -1,28 +1,19 @@
 <script context="module">
     
-    import { playing, station} from '../../stores/radios'
-    
-	let src
-    station?.subscribe(value => src = value.src)
+	export let player = new Audio('')
+	player.volume = 0.5
 
-    let isPlaying
-    playing.subscribe(value => isPlaying = value)
-
-	export let player = new Audio(src)
-
-	export const setStation = () => {
-        player.src = src
+	export const setStation = (station, setPlaying) => {
+        player.src = station.src
 		player.load()
         player.play()
-        playing.set(true)
+        setPlaying.set(true)
 	}
 
-	export const playPause = () => {
+	export const playPause = (isPlaying, setPlaying) => {
 		isPlaying ? player.pause() : player.play();
-		playing.set(!isPlaying)
+		setPlaying.set(!isPlaying)
 	}
 
 </script> 
-
-<!-- <audio bind:this={player} /> -->
 

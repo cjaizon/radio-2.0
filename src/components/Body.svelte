@@ -1,10 +1,7 @@
 <script>
 
-    import {radios} from '../stores/radios'
+    import {radios} from '../stores/RadioStore'
     import { Card, Player} from './pieces'
-
-    let allRadios
-    radios.subscribe(value => allRadios = value)
 
 </script>
 
@@ -12,11 +9,10 @@
     <Player />
     <div class="scroll w-[100vw] overflow-y-scroll overflow-x-hidden pr-3 pl-7">
         <div class="container grid grid-cols-body gap-3.5 max-w-6xl mx-auto my-6">
-            {#if allRadios}
-            {#each allRadios as station}
+            {#if $radios}
+            {#each $radios as radio (radio.id)}
                 <Card
-                    url={station?.url}
-                    name={station?.name} 
+                    {radio}
                 />
             {/each}
         {/if}
@@ -34,14 +30,14 @@
 
     /* Track */
     ::-webkit-scrollbar-track {
-        margin: 20px 0;
-        border-radius: 10px;
+        margin: 1.25rem 0;
     }
 
     /* Handle */
     ::-webkit-scrollbar-thumb {
-        background: rgb(221, 221, 221);
-        box-shadow: inset 1px 1px 3px rgb(136, 164, 255), inset -1px -1px 3px rgb(255, 152, 250), 1px 1px 3px rgb(204, 216, 255), -1px -1px 3px rgb(255, 187, 195);
+        background: transparent;
+        box-shadow: inset 1px 1px 3px rgb(136, 164, 255), inset -1px -1px 3px rgb(255, 152, 250), 1px 1px 2px rgb(204, 216, 255), -1px -1px 2px rgb(255, 187, 195);
         border-radius: 10px;
     }
+
 </style>

@@ -3,7 +3,7 @@ import { loadRadios } from '../utility/loadRadios.js'
 
 export const station = writable({
   'radio': '',
-  'src': ''
+  'src': '',
 })
 export const country = writable('BR')
 export const radios = writable([])

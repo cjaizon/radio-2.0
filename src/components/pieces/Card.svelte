@@ -1,32 +1,33 @@
 <script>
-    import {station} from '../../stores/radios'
+
+    import {fade} from 'svelte/transition'
+    import {station, playing} from '../../stores/RadioStore'
     import { setStation } from "./Player.svelte"
 
-    export let name
-    export let url
+    // export let name
+    // export let url
+    export let radio 
 
     const handleClick = (e) => {
         station.set({
-            'radio': name,
-            'src': e.target.value
+            'radio': radio.name,
+            'src': e.target.value,
         })
-        setStation()
+        setStation($station, playing)
     }
-
-    let radio
-    station?.subscribe((value) => radio = value.src)
 
 </script>
 
-<button 
+<button
+    transition:fade
     class={`
-        ${radio === url && 'selected'} 
+        ${$station.src === radio.url && 'selected'} 
         bg-radio hover:bg-white shadow-radio-shadow border border-transparent rounded-lg px-2 py-4 text-base pointer transition-[border-color_0.25s] hover:scale-110 hover:shadow-radio-hover relative z-0
     `}
-    value={url} 
+    value={radio.url}
     on:click={(e) => handleClick(e)}
 >
-    {name}
+    {radio.name}
 </button>
 
 <style>
