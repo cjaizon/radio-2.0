@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        'body': 'repeat(auto-fit, minmax(15rem, max-content))',
+        'body': 'repeat(auto-fill, minmax(15rem, 1fr))',
       },
       colors: {
         'radio': 'rgba(255, 255, 255, 0.164)',
