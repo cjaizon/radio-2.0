@@ -18,11 +18,11 @@ body {
     overflow-y: auto;
 }
 
-
-.selected-radio {
-    background: rgb(255, 255, 255);
-    transform: scale(1.05);
-    box-shadow: 1px 1px 8px rgb(212, 222, 255),
-        -1px -1px 8px rgb(255, 206, 212);
+@layer components {
+    .selected-radio {
+        background: rgb(255, 255, 255);
+        transform: scale(1.05);
+        box-shadow: 1px 1px 8px rgb(212, 222, 255),
+            -1px -1px 8px rgb(255, 206, 212);
+    }
 }
-
