@@ -33,6 +33,7 @@
     class="w-full flex pb-10 pt-16 sm:pt-10 pr-2 justify-center overflow-hidden h-[100vh]"
 >
     <Player />
+
     <div class="scroll w-[100vw] overflow-y-scroll overflow-x-hidden pr-3 pl-7">
         <div
             class="container grid grid-cols-body gap-3.5 max-w-6xl mx-auto my-6"

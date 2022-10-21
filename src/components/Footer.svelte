@@ -1,6 +1,6 @@
 <script>
-    import { playing, station } from '../stores/RadioStore'
-    import { player, playPause } from './pieces/Player.svelte'
+    import { station } from '../stores/RadioStore'
+    import { player, playPause, playing } from './pieces/Player.svelte'
 
     const handleVolume = (e) => {
         player.volume = e.target.value
