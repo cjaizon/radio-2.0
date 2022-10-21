@@ -53,7 +53,7 @@
                     on:change={(e) => handleChangeGenre(e)}
                 >
                     <option value="All" selected>Todos</option>
-                    {#each $genres as genre}
+                    {#each $genres.sort() as genre}
                         <option value={genre}>{genre}</option>
                     {/each}
                 </select>
