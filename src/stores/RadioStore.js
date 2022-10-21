@@ -6,31 +6,20 @@ export const station = writable({
   'src': '',
 })
 export const country = writable('BR')
+export const filter = writable({
+  'code': 'BR',
+  'genre': 'All'
+})
 export const radios = writable([])
 export const countries = writable([])
+export const genres = writable([])
 export const playing = writable(false)
 
-export const getRadios = async () => {
+
+const getRadios = async () => {
   const allData = await loadRadios()
   countries.set(allData.allCountriesCodes)
-
-  const setRadios = async () => {
-
-    let chosenCountry
-    country.subscribe(value => chosenCountry = value)
-
-    let allRadios
-    radios.subscribe(value => allRadios = value)
-
-    const filtered = await allData.allRadios.reduce((res, item) => {
-      (item.countrycode === chosenCountry || chosenCountry === 'All') && res.push(item)
-      return res
-    }, [])
-
-    radios.set(filtered)
-  }
-
-  setRadios()
+  radios.set(allData.allRadios)
 }
 
 getRadios()

@@ -1,21 +1,17 @@
 <script>
+    import { fade } from 'svelte/transition'
+    import { station, playing } from '../../stores/RadioStore'
+    import { setStation } from './Player.svelte'
 
-    import {fade} from 'svelte/transition'
-    import {station, playing} from '../../stores/RadioStore'
-    import { setStation } from "./Player.svelte"
-
-    // export let name
-    // export let url
-    export let radio 
+    export let radio
 
     const handleClick = (e) => {
         station.set({
-            'radio': radio.name,
-            'src': e.target.value,
+            radio: radio.name,
+            src: e.target.value,
         })
         setStation($station, playing)
     }
-
 </script>
 
 <button
@@ -34,6 +30,7 @@
     .selected {
         background: rgb(255, 255, 255);
         transform: scale(1.05);
-        box-shadow: 1px 1px 8px rgb(212, 222, 255), -1px -1px 8px rgb(255, 206, 212);
+        box-shadow: 1px 1px 8px rgb(212, 222, 255),
+            -1px -1px 8px rgb(255, 206, 212);
     }
 </style>

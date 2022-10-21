@@ -31,8 +31,20 @@ export const loadRadios = async () => {
         return res
     }, [])
 
+    // get a list with only the genres for filtering and menus
+    const allGenres = allRadios.reduce((res, radio) => {
+        if (radio.tags) {
+            for (const tag of radio.tags) {
+                !res.includes(tag) && res.push(tag)
+            }
+        }
+        return res
+    }, [])
 
-    return { allRadios, allCountriesCodes }
+
+
+
+    return { allRadios, allCountriesCodes, allGenres }
 }
 
 

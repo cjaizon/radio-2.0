@@ -1,6 +1,32 @@
 <script>
-    import { radios } from '../stores/RadioStore'
+    import { radios, filter, genres } from '../stores/RadioStore'
     import { Card, Player } from './pieces'
+
+    let filterdRadio = []
+
+    $: {
+        $filter.code !== 'All'
+            ? (filterdRadio = $radios.filter(
+                  (radio) => radio.countrycode === $filter.code
+              ))
+            : (filterdRadio = [...$radios])
+
+        const filteredGenres = filterdRadio.reduce((res, radio) => {
+            if (radio.tags) {
+                for (const tag of radio.tags) {
+                    !res.includes(tag) && res.push(tag)
+                }
+            }
+            return res
+        }, [])
+
+        genres.set(filteredGenres)
+
+        $filter.genre !== 'All' &&
+            (filterdRadio = filterdRadio.filter((radio) =>
+                radio.tags?.includes($filter.genre)
+            ))
+    }
 </script>
 
 <main
@@ -11,8 +37,8 @@
         <div
             class="container grid grid-cols-body gap-3.5 max-w-6xl mx-auto my-6"
         >
-            {#if $radios}
-                {#each $radios as radio (radio.id)}
+            {#if filterdRadio}
+                {#each filterdRadio as radio (radio.id)}
                     <Card {radio} />
                 {/each}
             {/if}
