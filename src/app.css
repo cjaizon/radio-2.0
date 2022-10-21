@@ -3,25 +3,24 @@
 @tailwind utilities;
 
 * {
-    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
     box-sizing: border-box;
+    position: relative;
     padding: 0;
     margin: 0;
-    color: #213547;
 }
 
 body {
+    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
     min-width: 320px;
     min-height: 100vh;
     background-color: rgb(240, 240, 240);
-    position: relative;
     overflow-y: auto;
+    color: #213547;
 }
 
 @layer utilities {
     .selected-radio {
-        background: rgb(255, 255, 255);
-        transform: scale(1.05);
+        background: white;
         box-shadow: 1px 1px 8px rgb(212, 222, 255),
             -1px -1px 8px rgb(255, 206, 212);
     }
