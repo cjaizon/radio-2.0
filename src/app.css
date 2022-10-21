@@ -18,7 +18,7 @@ body {
     overflow-y: auto;
 }
 
-@layer components {
+@layer utilities {
     .selected-radio {
         background: rgb(255, 255, 255);
         transform: scale(1.05);
