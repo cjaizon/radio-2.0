@@ -1,17 +1,21 @@
 <script>
     import { fade } from 'svelte/transition'
     import { station } from '../../stores/RadioStore'
-    import { setStation } from './Player.svelte'
+    import { playPause, setStation, playing } from './Player.svelte'
 
     export let radio
 
     const handleClick = (e) => {
-        station.set({
-            radio: e.target.innerText,
-            src: e.target.value,
-        })
+        if ($station.src !== e.target.value) {
+            station.set({
+                radio: e.target.innerText,
+                src: e.target.value,
+            })
 
-        setStation($station)
+            setStation($station)
+        } else {
+            playPause($playing, playing)
+        }
     }
 </script>
 
