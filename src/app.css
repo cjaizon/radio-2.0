@@ -20,8 +20,26 @@ body {
 
 @layer utilities {
     .selected-radio {
+        background: linear-gradient(
+            60deg,
+            hsl(224, 50%, 66%),
+            hsl(269, 50%, 66%),
+            hsl(314, 50%, 66%),
+            hsl(359, 50%, 66%),
+            hsl(179, 50%, 66%)
+        );
+        background-size: 300% 300%;
+        animation: moveGradient 4s alternate infinite;
+        box-shadow: 1px 1px 4px rgb(170, 183, 226),
+            -1px -1px 4px rgb(224, 170, 213);
+    }
+    .selected-radio > span {
         background: white;
-        box-shadow: 1px 1px 8px rgb(212, 222, 255),
-            -1px -1px 8px rgb(255, 206, 212);
+    }
+}
+
+@keyframes moveGradient {
+    50% {
+        background-position: 100% 50%;
     }
 }

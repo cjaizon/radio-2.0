@@ -11,7 +11,7 @@ module.exports = {
       },
       boxShadow: {
         'radio-shadow': ['2px 2px 4px rgb(211, 211, 211)', '-2px -2px 4px rgb(255, 255, 255)'],
-        'radio-hover': ['1px 1px 5px rgb(212, 222, 255)', ' -1px -1px 5px rgb(255, 206, 212)'],
+        'radio-hover': ['1px 1px 4px rgb(170, 183, 226)', '-1px -1px 4px rgb(224, 170, 213)'],
       }
     }
   },

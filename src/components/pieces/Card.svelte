@@ -6,16 +6,14 @@
     export let radio
 
     const handleClick = (e) => {
-        if ($station.src !== e.target.value) {
+        if ($station.src !== e.target.parentElement.value) {
             station.set({
                 radio: e.target.innerText,
-                src: e.target.value,
+                src: e.target.parentElement.value,
             })
 
             setStation($station)
-        } else {
-            playPause($playing, playing)
-        }
+        } else playPause($playing, playing)
     }
 </script>
 
@@ -26,10 +24,17 @@
     class={`
         ${$station.src === radio.url && 'selected-radio'} 
         bg-radio hover:bg-white shadow-radio-shadow
-        border border-transparent rounded-lg px-2 py-4 
+        border border-transparent rounded-lg 
         text-base pointer transition-[border-color_0.25s]
-        hover:scale-110 hover:shadow-radio-hover relative z-0
+        hover:scale-105 hover:shadow-radio-hover relative z-0
+        text-center
     `}
 >
-    {radio.name}
+    <span
+        class="px-2 py-4 rounded-lg bg-radio hover:bg-white block w-[calc(100%-10px) h-[calc(100%-2px)]"
+        >{radio.name}</span
+    >
 </button>
+
+<style>
+</style>
