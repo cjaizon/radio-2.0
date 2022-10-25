@@ -10,12 +10,10 @@
 }
 
 body {
-    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
     min-width: 320px;
     min-height: 100vh;
-    background-color: rgb(240, 240, 240);
-    overflow-y: auto;
-    color: #213547;
+    background-color: hsl(0, 0%, 94%);
+    color: hsl(245, 11%, 56%);
 }
 
 @layer utilities {
@@ -32,9 +30,11 @@ body {
         animation: moveGradient 4s alternate infinite;
         box-shadow: 1px 1px 4px rgb(170, 183, 226),
             -1px -1px 4px rgb(224, 170, 213);
+        color: hsl(300, 20%, 100%);
+        font-weight: 500;
     }
-    .selected-radio > span {
-        background: white;
+    .selected-radio:hover {
+        color: hsl(245, 11%, 56%);
     }
 }
 

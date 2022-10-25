@@ -1,10 +1,6 @@
 <script>
     import { station } from '../stores/RadioStore'
-    import { player, playPause, playing } from './pieces/Player.svelte'
-
-    const handleVolume = (e) => {
-        player.volume = e.target.value
-    }
+    import { player, playPause } from './pieces/Player.svelte'
 </script>
 
 <footer
@@ -18,11 +14,13 @@
         >
             <button
                 disabled={$station.src == ''}
-                class="text-xl mr-5 p-0"
-                on:click={() => playPause($playing, playing)}
+                class="text-xl mr-5 p-0 "
+                on:click={() => playPause($station, station)}
             >
                 <i
-                    class={`text-2xl fa ${!$playing ? 'fa-play' : 'fa-pause'}`}
+                    class={`text-2xl fa ${
+                        !$station.playing ? 'fa-play' : 'fa-pause'
+                    }`}
                 />
             </button>
             {#if player}
@@ -31,9 +29,8 @@
                     min="0"
                     max="1"
                     step="0.1"
-                    value={player.volume}
+                    bind:value={player.volume}
                     type="range"
-                    on:change={(e) => handleVolume(e)}
                 />
             {/if}
         </div>

@@ -1,4 +1,4 @@
-import { fetchRadios } from './fetchRadios.js'
+import { fetchRadios } from './fetchRadios'
 
 
 export const loadRadios = async () => {
@@ -7,7 +7,7 @@ export const loadRadios = async () => {
     // reduce the whole list getting rid of stations with missing info
     const allRadios = data.reduce((res, radio) => {
 
-        ((radio.codec === "MP3" || "AAC" || "AAC+") && (radio.stationuuid !== null)) && res.push({
+        ((radio.codec === "MP3" || "AAC" || "AAC+") && (radio.stationuuid !== null) && (radio.favicon !== null)) && res.push({
             'name': radio.name,
             'countrycode': radio.countrycode,
             'country': radio.country,
@@ -15,7 +15,7 @@ export const loadRadios = async () => {
             'codec': radio.codec,
             'favicon': radio.favicon,
             'id': radio.stationuuid,
-            // since there are multiple tags and kanguage cods in some station I used a regex to separate them into an array
+            // since there are multiple tags and language cods in some station I used a regex to separate them into an array
             'tags': radio.tags.match(/[^,\s]+/g),
             'language': radio.languagecodes.match(/[^,\s]+/g)
         })

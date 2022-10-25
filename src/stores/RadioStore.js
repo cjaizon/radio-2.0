@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store'
 import { loadRadios } from '../utility/loadRadios.js'
 
-export const station = writable({ 'radio': '', 'src': '', })
+export const station = writable({ 'radio': '', 'src': '', 'favicon': '', 'playing': false })
 export const filter = writable({ 'code': 'BR', 'genre': 'All' })
 export const radios = writable([])
 export const countries = writable([])
