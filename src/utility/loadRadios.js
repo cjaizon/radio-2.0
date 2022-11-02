@@ -1,50 +1,53 @@
-import { fetchRadios } from './fetchRadios'
-
+const url = import.meta.env.VITE_API_URL
 
 export const loadRadios = async () => {
 
-    const data = await fetchRadios()
-    // reduce the whole list getting rid of stations with missing info
-    const allRadios = data.reduce((res, radio) => {
+    try {
+        const res = await fetch(url)
+        const data = await res.json()
 
-        ((radio.codec === "MP3" || "AAC" || "AAC+") && (radio.stationuuid !== null) && (radio.favicon !== null)) && res.push({
-            'name': radio.name,
-            'countrycode': radio.countrycode,
-            'country': radio.country,
-            'url': radio.url,
-            'codec': radio.codec,
-            'favicon': radio.favicon,
-            'id': radio.stationuuid,
-            // since there are multiple tags and language cods in some station I used a regex to separate them into an array
-            'tags': radio.tags.match(/[^,\s]+/g),
-            'language': radio.languagecodes.match(/[^,\s]+/g)
-        })
+        // reduce the whole list getting rid of stations with missing info
+        const allRadios = data.reduce((res, radio) => {
 
-        return res
-    }, [])
+            ((radio.codec === "MP3" || "AAC" || "AAC+") && (radio.stationuuid !== null) && (radio.favicon !== null)) && res.push({
+                'name': radio.name,
+                'countrycode': radio.countrycode,
+                'country': radio.country,
+                'url': radio.url,
+                'codec': radio.codec,
+                'favicon': radio.favicon,
+                'id': radio.stationuuid,
+                // since there are multiple tags and language cods in some station I used a regex to separate them into an array
+                'tags': radio.tags.match(/[^,\s]+/g),
+                'language': radio.languagecodes.match(/[^,\s]+/g)
+            })
 
-    // get a list with only the countries for filtering and menus
-    const allCountriesCodes = allRadios.reduce((res, radio) => {
+            return res
+        }, [])
 
-        (radio.countrycode !== "" && !res.includes(radio.countrycode)) && res.push(radio.countrycode)
+        // get a list with only the countries for filtering and menus
+        const allCountriesCodes = allRadios.reduce((res, radio) => {
 
-        return res
-    }, [])
+            (radio.countrycode !== "" && !res.includes(radio.countrycode)) && res.push(radio.countrycode)
 
-    // get a list with only the genres for filtering and menus
-    const allGenres = allRadios.reduce((res, radio) => {
-        if (radio.tags) {
-            for (const tag of radio.tags) {
-                !res.includes(tag) && res.push(tag)
+            return res
+        }, [])
+
+        // get a list with only the genres for filtering and menus
+        const allGenres = allRadios.reduce((res, radio) => {
+            if (radio.tags) {
+                for (const tag of radio.tags) {
+                    !res.includes(tag) && res.push(tag)
+                }
             }
-        }
-        return res
-    }, [])
+            return res
+        }, [])
 
+        return { allRadios, allCountriesCodes, allGenres }
 
-
-
-    return { allRadios, allCountriesCodes, allGenres }
+    } catch (err) {
+        console.log(err)
+    }
 }
 
 
