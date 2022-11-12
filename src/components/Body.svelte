@@ -1,6 +1,6 @@
 <script>
     import { radios, filter, genres } from '../stores/RadioStore'
-    import { Card } from './pieces'
+    import  Card  from './pieces/Card.svelte'
 
     let filterdRadio = []
 
